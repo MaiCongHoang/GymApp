@@ -34,7 +34,7 @@ import com.example.gymapp.domain.model.Subject
 @Composable
 fun AddSubjectDialog(
     isOpen: Boolean,
-    title: String = "Add/Update Subject",
+    title: String = "Thêm/Cập Nhật Chủ Đề",
     selectedColors: List<Color>,
     subjectName: String,
     goalHours: String,
@@ -48,16 +48,16 @@ fun AddSubjectDialog(
     var goalHoursError by rememberSaveable { mutableStateOf<String?>(null) }
 
     subjectNameError = when {
-        subjectName.isBlank() -> "Please enter subject name."
-        subjectName.length < 2 -> "Subject name is too short."
-        subjectName.length > 20 -> "Subject name is too long."
+        subjectName.isBlank() -> "Vui lòng nhập tên chủ đề."
+        subjectName.length < 2 -> "Tên chủ đề quá ngắn."
+        subjectName.length > 20 -> "Tên chủ đề quá dài."
         else -> null
     }
     goalHoursError = when {
-        goalHours.isBlank() -> "Please enter goal study hours."
-        goalHours.toFloatOrNull() == null -> "Invalid number."
-        goalHours.toFloat() < 1f -> "Please set at least 1 hour."
-        goalHours.toFloat() > 1000f -> "Please set a maximum of 1000 hours."
+        goalHours.isBlank() -> "Vui lòng nhập mục tiêu giờ tập."
+        goalHours.toFloatOrNull() == null -> "Số không hợp lệ."
+        goalHours.toFloat() < 1f -> "Vui lòng đặt ít nhất 1 giờ."
+        goalHours.toFloat() > 1000f -> "Vui lòng đặt tối đa 1000 giờ."
         else -> null
     }
 
@@ -92,7 +92,7 @@ fun AddSubjectDialog(
                     OutlinedTextField(
                         value = subjectName,
                         onValueChange = onSubjectNameChange,
-                        label = { Text(text = "Subject Name") },
+                        label = { Text(text = "Tên Chủ Đề") },
                         singleLine = true,
                         isError = subjectNameError != null && subjectName.isNotBlank(),
                         supportingText = { Text(text = subjectNameError.orEmpty())}
@@ -101,7 +101,7 @@ fun AddSubjectDialog(
                     OutlinedTextField(
                         value = goalHours,
                         onValueChange = onGoalHoursChange,
-                        label = { Text(text = "Goal Study Hours") },
+                        label = { Text(text = "Mục Tiêu Giờ Tập") },
                         singleLine = true,
                         isError = goalHoursError != null && goalHours.isNotBlank(),
                         supportingText = { Text(text = goalHoursError.orEmpty())},
@@ -111,7 +111,7 @@ fun AddSubjectDialog(
             },
             dismissButton = {
                 TextButton(onClick = onDismissRequest) {
-                    Text(text = "Cancel")
+                    Text(text = "Huỷ")
                 }
             },
             confirmButton = {
@@ -119,7 +119,7 @@ fun AddSubjectDialog(
                     onClick = onConfirmButtonClick,
                     enabled = subjectNameError == null && goalHoursError == null
                 ) {
-                    Text(text = "Save")
+                    Text(text = "Lưu")
                 }
             }
         )

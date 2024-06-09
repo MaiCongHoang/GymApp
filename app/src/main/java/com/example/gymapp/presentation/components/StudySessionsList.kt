@@ -51,7 +51,7 @@ fun LazyListScope.studySessionsList(
             ) {
                 Image(
                     modifier = Modifier.size(120.dp),
-                    painter = painterResource(R.drawable.img_lamp),
+                    painter = painterResource(R.drawable.img_gymsession),
                     contentDescription = emptyListText
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -108,7 +108,7 @@ private fun StudySessionCard(
             IconButton(onClick = onDeleteIconClick) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = "Delete Session"
+                    contentDescription = "Xoá Buổi Tập"
                 )
             }
         }

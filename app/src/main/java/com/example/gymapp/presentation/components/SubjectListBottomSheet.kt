@@ -28,7 +28,7 @@ fun SubjectListBottomSheet(
     sheetState: SheetState,
     isOpen: Boolean,
     subjects: List<Subject>,
-    bottomSheetTitle: String = "Related to subject",
+    bottomSheetTitle: String = "Chủ Đề",
     onSubjectClicked: (Subject) -> Unit,
     onDismissRequest: () -> Unit
 ) {
@@ -65,7 +65,7 @@ fun SubjectListBottomSheet(
                     item {
                         Text(
                             modifier = Modifier.padding(10.dp),
-                            text = "Ready to begin? First, add a subject."
+                            text = "Bạn đã sẵn sàng để bắt đầu chưa? Đầu tiên, hãy thêm một chủ đề."
                         )
                     }
                 }

@@ -292,7 +292,7 @@ private fun SubjectCardsSection(
                 modifier = Modifier
                     .size(120.dp)
                     .align(Alignment.CenterHorizontally),
-                painter = painterResource(R.drawable.img_books),
+                painter = painterResource(R.drawable.img_gymsubject),
                 contentDescription = emptyListText
             )
             Text(

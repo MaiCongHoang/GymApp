@@ -72,7 +72,7 @@ import kotlin.time.DurationUnit
     deepLinks = [
         DeepLink(
             action = Intent.ACTION_VIEW,
-            uriPattern = "study_smart://dashboard/session"
+            uriPattern = "gym_app://dashboard/session"
         )
     ]
 )

@@ -39,7 +39,7 @@ fun SubjectCard(
             verticalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(R.drawable.img_books),
+                painter = painterResource(R.drawable.img_gymsubject),
                 contentDescription = subjectName,
                 modifier = Modifier.size(80.dp)
             )

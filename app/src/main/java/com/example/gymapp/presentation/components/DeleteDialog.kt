@@ -20,12 +20,12 @@ fun DeleteDialog(
             text = { Text(text = bodyText) },
             dismissButton = {
                 TextButton(onClick = onDismissRequest) {
-                    Text(text = "Cancel")
+                    Text(text = "Huỷ")
                 }
             },
             confirmButton = {
                 TextButton(onClick = onConfirmButtonClick) {
-                    Text(text = "Delete")
+                    Text(text = "Xoá")
                 }
             }
         )
