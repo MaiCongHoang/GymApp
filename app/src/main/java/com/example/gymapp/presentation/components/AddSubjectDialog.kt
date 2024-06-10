@@ -37,10 +37,10 @@ fun AddSubjectDialog(
     title: String = "Thêm/Cập Nhật Chủ Đề",
     selectedColors: List<Color>,
     subjectName: String,
-    goalHours: String,
+    goalMinutes: String,
     onColorChange: (List<Color>) -> Unit,
     onSubjectNameChange: (String) -> Unit,
-    onGoalHoursChange: (String) -> Unit,
+    onGoalMinutesChange: (String) -> Unit,
     onDismissRequest: () -> Unit,
     onConfirmButtonClick: () -> Unit
 ) {
@@ -54,10 +54,10 @@ fun AddSubjectDialog(
         else -> null
     }
     goalHoursError = when {
-        goalHours.isBlank() -> "Vui lòng nhập mục tiêu giờ tập."
-        goalHours.toFloatOrNull() == null -> "Số không hợp lệ."
-        goalHours.toFloat() < 1f -> "Vui lòng đặt ít nhất 1 giờ."
-        goalHours.toFloat() > 1000f -> "Vui lòng đặt tối đa 1000 giờ."
+        goalMinutes.isBlank() -> "Vui lòng nhập số phút tập mục tiêu."
+        goalMinutes.toFloatOrNull() == null -> "Số không hợp lệ."
+        goalMinutes.toFloat() < 1f -> "Vui lòng đặt ít nhất 1 phút."
+        goalMinutes.toFloat() > 100000f -> "Vui lòng đặt tối đa 1000000 phút."
         else -> null
     }
 
@@ -99,11 +99,11 @@ fun AddSubjectDialog(
                     )
                     Spacer(modifier = Modifier.height(10.dp))
                     OutlinedTextField(
-                        value = goalHours,
-                        onValueChange = onGoalHoursChange,
-                        label = { Text(text = "Mục Tiêu Giờ Tập") },
+                        value = goalMinutes,
+                        onValueChange = onGoalMinutesChange,
+                        label = { Text(text = "Mục Tiêu Số Phút Tập") },
                         singleLine = true,
-                        isError = goalHoursError != null && goalHours.isNotBlank(),
+                        isError = goalHoursError != null && goalMinutes.isNotBlank(),
                         supportingText = { Text(text = goalHoursError.orEmpty())},
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                     )

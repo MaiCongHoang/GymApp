@@ -11,7 +11,7 @@ import com.example.gymapp.presentation.theme.gradient5
 @Entity
 data class Subject(
     val name: String,
-    val goalHours: Float,
+    val goalMinutes: Float,
     val colors: List<Int>,
     @PrimaryKey(autoGenerate = true)
     val subjectId: Int? = null

@@ -11,7 +11,7 @@ import com.example.gymapp.domain.repository.SessionRepository
 import com.example.gymapp.domain.repository.SubjectRepository
 import com.example.gymapp.domain.repository.TaskRepository
 import com.example.gymapp.util.SnackbarEvent
-import com.example.gymapp.util.toHours
+import com.example.gymapp.util.toMinutes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -35,15 +35,15 @@ class DashboardViewModel @Inject constructor(
     val state = combine(
         _state,
         subjectRepository.getTotalSubjectCount(),
-        subjectRepository.getTotalGoalHours(),
+        subjectRepository.getTotalGoalMinutes(),
         subjectRepository.getAllSubjects(),
         sessionRepository.getTotalSessionsDuration()
-    ) { state, subjectCount, goalHours, subjects, totalSessionDuration ->
+    ) { state, subjectCount, goalMinutes, subjects, totalSessionDuration ->
         state.copy(
             totalSubjectCount = subjectCount,
-            totalGoalStudyHours = goalHours,
+            totalGoalStudyMinutes = goalMinutes,
             subjects = subjects,
-            totalStudiedHours = totalSessionDuration.toHours()
+            totalStudiedMinutes = totalSessionDuration.toMinutes()
         )
     }.stateIn(
         scope = viewModelScope,
@@ -76,9 +76,9 @@ class DashboardViewModel @Inject constructor(
                 }
             }
 
-            is DashboardEvent.OnGoalStudyHoursChange -> {
+            is DashboardEvent.OnGoalStudyMinutesChange -> {
                 _state.update {
-                    it.copy(goalStudyHours = event.hours)
+                    it.copy(goalStudyMinutes = event.minutes)
                 }
             }
 
@@ -128,14 +128,14 @@ class DashboardViewModel @Inject constructor(
                 subjectRepository.upsertSubject(
                     subject = Subject(
                         name = state.value.subjectName,
-                        goalHours = state.value.goalStudyHours.toFloatOrNull() ?: 1f,
+                        goalMinutes = state.value.goalStudyMinutes.toFloatOrNull() ?: 1f,
                         colors = state.value.subjectCardColors.map { it.toArgb() }
                     )
                 )
                 _state.update {
                     it.copy(
                         subjectName = "",
-                        goalStudyHours = "",
+                        goalStudyMinutes = "",
                         subjectCardColors = Subject.subjectCardColors.random()
                     )
                 }

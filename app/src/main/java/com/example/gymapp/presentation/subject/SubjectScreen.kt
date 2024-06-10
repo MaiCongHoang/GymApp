@@ -125,16 +125,16 @@ private fun SubjectScreen(
         }
     }
 
-    LaunchedEffect(key1 = state.studiedHours, key2 = state.goalStudyHours) {
+    LaunchedEffect(key1 = state.studiedMinutes, key2 = state.goalStudyMinutes) {
         onEvent(SubjectEvent.UpdateProgress)
     }
 
     AddSubjectDialog(
         isOpen = isEditSubjectDialogOpen,
         subjectName = state.subjectName,
-        goalHours = state.goalStudyHours,
+        goalMinutes = state.goalStudyMinutes,
         onSubjectNameChange = { onEvent(SubjectEvent.OnSubjectNameChange(it)) },
-        onGoalHoursChange = { onEvent(SubjectEvent.OnGoalStudyHoursChange(it)) },
+        onGoalMinutesChange = { onEvent(SubjectEvent.OnGoalStudyMinutesChange(it)) },
         selectedColors = state.subjectCardColors,
         onColorChange = { onEvent(SubjectEvent.OnSubjectCardColorChange(it)) },
         onDismissRequest = { isEditSubjectDialogOpen = false },
@@ -200,8 +200,8 @@ private fun SubjectScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(12.dp),
-                    studiedHours = state.studiedHours.toString(),
-                    goalHours = state.goalStudyHours,
+                    studiedHours = state.studiedMinutes.toString(),
+                    goalHours = state.goalStudyMinutes,
                     progress = state.progress
                 )
             }
@@ -303,13 +303,13 @@ private fun SubjectOverviewSection(
     ) {
         CountCard(
             modifier = Modifier.weight(1f),
-            headingText = "Mục Tiêu Giờ Tập",
+            headingText = "Mục Tiêu Số Phút Tập",
             count = goalHours
         )
         Spacer(modifier = Modifier.width(10.dp))
         CountCard(
             modifier = Modifier.weight(1f),
-            headingText = "Số Giờ Đã Tập",
+            headingText = "Số Phút Đã Tập",
             count = studiedHours
         )
         Spacer(modifier = Modifier.width(10.dp))

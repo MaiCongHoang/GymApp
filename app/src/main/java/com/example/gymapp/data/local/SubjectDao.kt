@@ -15,8 +15,8 @@ interface SubjectDao {
     @Query("SELECT COUNT(*) FROM SUBJECT")
     fun getTotalSubjectCount(): Flow<Int>
 
-    @Query("SELECT SUM(goalHours) FROM SUBJECT")
-    fun getTotalGoalHours(): Flow<Float>
+    @Query("SELECT SUM(goalMinutes) FROM SUBJECT")
+    fun getTotalGoalMinutes(): Flow<Float>
 
     @Query("SELECT * FROM Subject WHERE subjectId = :subjectId")
     suspend fun getSubjectById(subjectId: Int): Subject?

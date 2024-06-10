@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import com.example.gymapp.R
 import com.example.gymapp.domain.model.Session
 import com.example.gymapp.util.changeMillisToDateString
-import com.example.gymapp.util.toHours
+import com.example.gymapp.util.toMinutes
 
 fun LazyListScope.studySessionsList(
     sectionTitle: String,
@@ -102,7 +102,7 @@ private fun StudySessionCard(
             }
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                text = "${session.duration.toHours()} hr",
+                text = "${session.duration.toMinutes()} min",
                 style = MaterialTheme.typography.titleMedium
             )
             IconButton(onClick = onDeleteIconClick) {

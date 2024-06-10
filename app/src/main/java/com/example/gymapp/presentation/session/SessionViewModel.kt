@@ -108,10 +108,10 @@ class SessionViewModel @Inject constructor(
 
     private fun insertSession(duration: Long) {
         viewModelScope.launch {
-            if (duration < 36) {
+            if (duration < 30) {
                 _snackbarEventFlow.emit(
                     SnackbarEvent.ShowSnackbar(
-                        message = "Single session can not be less than 36 seconds"
+                        message = "Một buổi tập không thể ít hơn 30 giây"
                     )
                 )
                 return@launch

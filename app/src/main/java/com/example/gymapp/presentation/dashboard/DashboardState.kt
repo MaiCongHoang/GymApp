@@ -6,11 +6,11 @@ import com.example.gymapp.domain.model.Subject
 
 data class DashboardState(
     val totalSubjectCount: Int = 0,
-    val totalStudiedHours: Float = 0f,
-    val totalGoalStudyHours: Float = 0f,
+    val totalStudiedMinutes: Float = 0f,
+    val totalGoalStudyMinutes: Float = 0f,
     val subjects: List<Subject> = emptyList(),
     val subjectName: String = "",
-    val goalStudyHours: String = "",
+    val goalStudyMinutes: String = "",
     val subjectCardColors: List<Color> = Subject.subjectCardColors.random(),
     val session: Session? = null
 )

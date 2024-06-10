@@ -30,9 +30,9 @@ fun Long?.changeMillisToDateString(): String {
     return date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
 }
 
-fun Long.toHours(): Float {
-    val hours = this.toFloat() / 3600f
-    return "%.2f".format(hours).toFloat()
+fun Long.toMinutes(): Float {
+    val minutes = this.toFloat() / 60f
+    return "%.2f".format(minutes).toFloat()
 }
 
 sealed class SnackbarEvent {

@@ -9,7 +9,7 @@ interface SubjectRepository {
 
     fun getTotalSubjectCount(): Flow<Int>
 
-    fun getTotalGoalHours(): Flow<Float>
+    fun getTotalGoalMinutes(): Flow<Float>
 
     suspend fun deleteSubject(subjectId: Int)
 

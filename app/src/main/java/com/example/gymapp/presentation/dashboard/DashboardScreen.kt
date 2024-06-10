@@ -134,10 +134,10 @@ private fun DashboardScreen(
     AddSubjectDialog(
         isOpen = isAddSubjectDialogOpen,
         subjectName = state.subjectName,
-        goalHours = state.goalStudyHours,
+        goalMinutes = state.goalStudyMinutes,
         selectedColors = state.subjectCardColors,
         onSubjectNameChange = { onEvent(DashboardEvent.OnSubjectNameChange(it)) },
-        onGoalHoursChange = { onEvent(DashboardEvent.OnGoalStudyHoursChange(it)) },
+        onGoalMinutesChange = { onEvent(DashboardEvent.OnGoalStudyMinutesChange(it)) },
         onColorChange = { onEvent(DashboardEvent.OnSubjectCardColorChange(it)) },
         onDismissRequest = { isAddSubjectDialogOpen = false },
         onConfirmButtonClick = {
@@ -173,8 +173,8 @@ private fun DashboardScreen(
                         .fillMaxWidth()
                         .padding(12.dp),
                     subjectCount = state.totalSubjectCount,
-                    studiedHours = state.totalStudiedHours.toString(),
-                    goalHours = state.totalGoalStudyHours.toString()
+                    studiedMinutes = state.totalStudiedMinutes.toString(),
+                    goalMinutes = state.totalGoalStudyMinutes.toString()
                 )
             }
             item {
@@ -237,8 +237,8 @@ private fun DashboardScreenTopBar() {
 private fun CountCardsSection(
     modifier: Modifier,
     subjectCount: Int,
-    studiedHours: String,
-    goalHours: String
+    studiedMinutes: String,
+    goalMinutes: String
 ) {
     Row(modifier = modifier) {
         CountCard(
@@ -249,14 +249,14 @@ private fun CountCardsSection(
         Spacer(modifier = Modifier.width(10.dp))
         CountCard(
             modifier = Modifier.weight(1f),
-            headingText = "Giờ Tập",
-            count = studiedHours
+            headingText = "Phút Tập",
+            count = studiedMinutes
         )
         Spacer(modifier = Modifier.width(10.dp))
         CountCard(
             modifier = Modifier.weight(1f),
-            headingText = "Mục Tiêu Giờ Tập",
-            count = goalHours
+            headingText = "Mục Tiêu Phút Tập",
+            count = goalMinutes
         )
     }
 }

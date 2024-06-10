@@ -13,7 +13,7 @@ import com.example.gymapp.domain.repository.SubjectRepository
 import com.example.gymapp.domain.repository.TaskRepository
 import com.example.gymapp.presentation.navArgs
 import com.example.gymapp.util.SnackbarEvent
-import com.example.gymapp.util.toHours
+import com.example.gymapp.util.toMinutes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -49,7 +49,7 @@ class SubjectViewModel @Inject constructor(
             upcomingTasks = upcomingTasks,
             completedTasks = completedTask,
             recentSessions = recentSessions,
-            studiedHours = totalSessionsDuration.toHours()
+            studiedMinutes = totalSessionsDuration.toMinutes()
         )
     }.stateIn(
         scope = viewModelScope,
@@ -78,9 +78,9 @@ class SubjectViewModel @Inject constructor(
                 }
             }
 
-            is SubjectEvent.OnGoalStudyHoursChange -> {
+            is SubjectEvent.OnGoalStudyMinutesChange -> {
                 _state.update {
-                    it.copy(goalStudyHours = event.hours)
+                    it.copy(goalStudyMinutes = event.minutes)
                 }
             }
 
@@ -98,10 +98,10 @@ class SubjectViewModel @Inject constructor(
             SubjectEvent.DeleteSession -> deleteSession()
 
             SubjectEvent.UpdateProgress -> {
-                val goalStudyHours = state.value.goalStudyHours.toFloatOrNull() ?: 1f
+                val goalStudyHours = state.value.goalStudyMinutes.toFloatOrNull() ?: 1f
                 _state.update {
                     it.copy(
-                        progress = (state.value.studiedHours / goalStudyHours).coerceIn(0f, 1f)
+                        progress = (state.value.studiedMinutes / goalStudyHours).coerceIn(0f, 1f)
                     )
                 }
             }
@@ -115,7 +115,7 @@ class SubjectViewModel @Inject constructor(
                     subject = Subject(
                         subjectId = state.value.currentSubjectId,
                         name = state.value.subjectName,
-                        goalHours = state.value.goalStudyHours.toFloatOrNull() ?: 1f,
+                        goalMinutes = state.value.goalStudyMinutes.toFloatOrNull() ?: 1f,
                         colors = state.value.subjectCardColors.map { it.toArgb() }
                     )
                 )
@@ -140,7 +140,7 @@ class SubjectViewModel @Inject constructor(
                     _state.update {
                         it.copy(
                             subjectName = subject.name,
-                            goalStudyHours = subject.goalHours.toString(),
+                            goalStudyMinutes = subject.goalMinutes.toString(),
                             subjectCardColors = subject.colors.map { colors -> Color(colors) },
                             currentSubjectId = subject.subjectId
                         )

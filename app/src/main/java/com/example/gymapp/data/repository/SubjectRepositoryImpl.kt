@@ -22,8 +22,8 @@ class SubjectRepositoryImpl @Inject constructor(
         return subjectDao.getTotalSubjectCount()
     }
 
-    override fun getTotalGoalHours(): Flow<Float> {
-        return subjectDao.getTotalGoalHours()
+    override fun getTotalGoalMinutes(): Flow<Float> {
+        return subjectDao.getTotalGoalMinutes()
     }
 
     override suspend fun deleteSubject(subjectId: Int) {
